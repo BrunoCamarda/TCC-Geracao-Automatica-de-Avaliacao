@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'green',
+    'skin' => 'purple',
 
     /*
     |--------------------------------------------------------------------------
@@ -58,7 +58,7 @@ return [
     |
     */
 
-    'layout' => null,
+    'layout' => 'top-nav',
 
     /*
     |--------------------------------------------------------------------------
@@ -109,11 +109,6 @@ return [
 
     'menu' => [ 
         [
-            'text' => 'Início', 
-            'url'  => 'home', 
-            'icon' => 'home', 
-        ],
-        [
             'text' => 'Cadastrar Questões', 
             'url'  => 'cadastrar', 
             'icon' => 'plus', 
@@ -121,12 +116,22 @@ return [
         [
             'text' => 'Visualizar Questões', 
             'url'  => 'visualizar', 
-            'icon' => 'database', 
+            'icon' => 'eye', 
         ],
         [
             'text' => 'Gerar Avaliação', 
             'url'  => 'gerar', 
-            'icon' => 'bolt', 
+            'icon' => 'gears', 
+        ],
+        [
+            'text' => 'Gerenciar Avaliações', 
+            'url'  => 'gerenciar', 
+            'icon' => 'folder-open', 
+        ], 
+        [
+            'text' => 'Cabeçalhos', 
+            'url'  => 'cabecalhos',
+            'icon' => 'pencil',
         ],
         [
             'text' => 'Ajuda', 
