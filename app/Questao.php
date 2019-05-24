@@ -19,4 +19,9 @@ class Questao extends Model
     public function avaliacoes(){
         return $this->belongsToMany('App\Avaliacao', 'avaliacao_questao', 'id_questao', 'id_avaliacao');
     }
+
+    public function respostas(){
+        return $this->hasOne('App\Resposta'); 
+    }
+
 }

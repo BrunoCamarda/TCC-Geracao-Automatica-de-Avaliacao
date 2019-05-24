@@ -8,6 +8,7 @@ use App\Questao;
 use App\Assunto;
 use App\QuestaoAssunto;
 use App\Avaliacao; 
+use App\Resposta; 
 use Illuminate\Http\Request;
 
 class QuestaoController extends Controller
@@ -40,6 +41,14 @@ class QuestaoController extends Controller
      */
     public function store(Request $request){ 
       $id = Questao::create($request->all())->id;
+      $r = new Resposta();
+      $r->id_questao = $id; 
+      if ($request->tipo == 1){
+        $r->texto = $request->resposta;
+      }else{
+        $r->alternativa = $request->alternativa; 
+      }
+      $r->save();
       foreach($request->assunto_id as $assunto){
         $q = new QuestaoAssunto(); 
         $q->id_questao = $id; 

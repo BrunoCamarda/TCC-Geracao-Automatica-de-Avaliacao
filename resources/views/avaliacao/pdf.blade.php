@@ -12,7 +12,7 @@
  
 <br>
 @foreach($questoes as $key=>$questao)
-{{ $key+1 }}  {!!$questao->enunciado!!} 
+{{ $key+1 }}.{!!$questao->enunciado!!} 
 <br><br><br>
 
 @endforeach

@@ -53,6 +53,7 @@
 
         <div class="tab-content">
             <div class="tab-pane fade in active" id="step1">
+                <div class="well">
                 <script src="vendor/tinymce/js/tinymce/tinymce.min.js"></script>
                 <script type="text/javascript">
                     tinymce.init({
@@ -103,11 +104,15 @@
             
             </textarea>
             </center>
+            <br>
+            <button class="btn btn-default btn-lg next" style="float: right;" href="#" >Continue&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button>
           </div>
-          
+            </div>
+
           <div class="tab-pane fade" id="step2">
-            <div class="form-row">
-              <div class="col-7">
+              <div class="well">
+            <div class="col">
+              
                   <label for="assunto">Assuntos </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos!" data-placement="right"></span>
                       <select class="js-example-basic-multiple js-states form-control" id="assunto_id[]" name="assunto_id[]" required multiple="multiple">
                           @foreach($assuntos as $a)
@@ -116,15 +121,7 @@
                       </select>
                       <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
                       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                      <script type="text/javascript">
-                          $(document).ready(function() {
-                              $('.js-example-basic-multiple').select2({
-                                  theme: "classic"
-                              });
-                              $('[data-toggle="tooltip"]').tooltip();
-                          });
-                      </script>
-              </div>
+             
           </div>
           <div class="input-group-prepend">
             <span class="input-group-btn">
@@ -142,10 +139,14 @@
             location.reload();
            })
           </script>
+          <br>
+          <button class="btn btn-default btn-lg next" style="float: right;" href="#" >Continue&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button>
           </div> 
+        </div>
 
           <div class="tab-pane fade" id="step3">
-            <div class="col">
+            <div class="well">
+              <div class="col">
                 <label for="dificuldade">Dificuldade</label>
                 <select class="form-control" id="dificuldade" name="dificuldade" required>
                     <option selected disabled value="">SELECIONE</option>
@@ -159,15 +160,19 @@
                 <label for="tempo">Tempo</label>
                 <input type="number" class="form-control" id="tempo" name="tempo" required>
             </div>
+            <br>
+            <button class="btn btn-default btn-lg next" style="float: right;" href="#" >Continue&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button>
           </div>
+        </div>
 
           <div class="tab-pane fade" id="step4">
+              <div class="well">
             <fieldset class="form-group">
                     <div class="row">
                       <legend class="col-form-label col-sm-2 pt-0">Tipo</legend>
                       <div class="col-sm-10">
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="tipo" id="tipo1" value="1" checked>
+                          <input class="form-check-input" type="radio" name="tipo" id="tipo1" value="1">
                           <label class="form-check-label" for="tipo1">
                             Discursiva
                           </label>
@@ -181,18 +186,95 @@
                       </div>
                     </div>
                   </fieldset>
-              </div>
 
+                  <br>
+                  <button class="btn btn-default btn-lg next" style="float: right;" href="#" >Continue&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button>
+              </div>
+          </div>
+
+          <div class="tab-pane fade" id="step5">
+          <div class="well">
+            <!--- Discursiva --->
+            <div class="tipo1 box" hidden>
+                <script type="text/javascript">
+                  tinymce.init({
+                    selector: '#resposta',
+                    language: 'pt_BR',
+                    browser_spellcheck: true, 
+                    toolbar: 'undo redo | codesample',
+                    menubar: true,
+                    contextmenu: true,
+                    plugins: 'advlist toc insertdatetime tabfocus hr pagebreak nonbreaking print preview lists charmap autoresize searchreplace emoticons help paste table codesample', 
+                    height: 150,
+                    width: 800,
+                    codesample_dialog_width: '400',
+                    codesample_dialog_height: '400',
+                    font_formats: 'Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats',
+                    fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt', 
+                    image_caption: true,
+                    indentation: '20pt', 
+                    image_advtab: true,
+                    paste_data_images: true,
+                    elementpath: false,
+                    resize: 'both', 
+                    branding: false,
+                    mobile: {
+                        theme: "mobile",
+                        plugins: [ 'autosave', 'lists', 'autolink' ],
+                        toolbar: ['undo', 'redo', 'bold', 'italic', 'numlist', 'bullist', 'fontsizeselect', 'image'],
         
-        <div class="tab-pane fade" id="step5">
-        <br>
-        <input type="submit" class="btn btn-success" value="Cadastrar">
+                    },
+                    codesample_languages: [
+                            {text: 'HTML/XML', value: 'markup'},
+                            {text: 'JavaScript', value: 'javascript'},
+                            {text: 'CSS', value: 'css'},
+                            {text: 'PHP', value: 'php'},
+                            {text: 'Ruby', value: 'ruby'},
+                            {text: 'Python', value: 'python'},
+                            {text: 'Java', value: 'java'},
+                            {text: 'C', value: 'c'},
+                            {text: 'C#', value: 'csharp'},
+                            {text: 'C++', value: 'cpp'},
+                    ],
+                    });
+                </script>
+            <center>
+            <h1></h1>
+            <textarea id="resposta" name="resposta"><div class="panel-body">
+            Insira aqui a resposta da sua questão
+            
+            </textarea>
+            </center>
+          </div>
+
+            
+            <div class="tipo2 box" hidden>
+                <label for="alternativa">Alternativa Correta</label>
+                <select class="form-control" id="alternativa" name="alternativa" required>
+                    <option selected disabled value="">SELECIONE</option>
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                    <option value="3">C</option>
+                    <option value="4">D</option>
+                    <option value="5">E</option>
+                </select>
+            </div>
+            <br>
+            <input class="btn btn-default btn-lg next" value="Cadastrar" type="submit" style="float: right;">
+          </div>
         </div>
         </div> 
         <div id="push"></div>
 
+
         <!--- Script Progress Bar --> 
         <script type="text/javascript">
+        $(document).ready(function(){
+            $('.next').click(function(){
+              var nextId = $(this).parents('.tab-pane').next().attr("id");
+            $('[href=#'+nextId+']').tab('show');
+              return false;
+            })
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             //update progress
               var step = $(e.target).data('step');
@@ -201,15 +283,26 @@
             $('.progress-bar').css({width: percent + '%'});
             $('.progress-bar').text("Passo " + step + " de 5");
 
-            //e.relatedTarget // previous tab
+            e.relatedTarget // previous tab
 
-            })
+            });
 
             $('.first').click(function(){
 
-            $('#formquestao a:first').tab('show')
+            $('#myWizard a:first').tab('show')
 
-            })
+            });
+            $('input[type="radio"]').click(function(){
+              var inputValue = $(this).attr("id");
+              var targetBox = $("." + inputValue);
+            $(".box").not(targetBox).hide();
+            $(targetBox).show();
+            });
+            $('.js-example-basic-multiple').select2({
+              theme: "classic"
+            });
+            $('[data-toggle="tooltip"]').tooltip();
+          });
         </script>
 
         <!--- CSS for Nav Pills --> 
