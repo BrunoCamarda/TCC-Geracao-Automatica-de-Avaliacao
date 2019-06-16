@@ -63,8 +63,64 @@ class QuestaoController extends Controller
         return view('avaliacao.gerar')->with("assuntos", $assuntos);
     }
 
-    public function gerarAvaliacao(Request $request){ 
+    //gerarLista não conta com nenhum tipo de controle sobre o tipo das avaliacoes, apenas insere
+    //por ordem de uso
+    public function gerarLista($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
+                                $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo){
+
+    $numeroQuestoes = 0; 
+    
+    //Inserir pelo menos uma questão de cada assunto
+    foreach ($questoes as $questao){ 
+        if (($tempo > 0 && $tempo > $questao->tempo) || ($numeroQuestoes != $totalDeQuestoes)){
+            if ($questao->dificuldade == 1){
+                if($numeroQuestoesF > 0){
+                    $avaliacao->adicionaQuestao($questao);
+                    array_push($questoesUsadas, $questao); 
+                    $tempo -= $questao->tempo;
+                    $numeroQuestoes++; 
+                    $numeroQuestoesF--;  
+                }
+            }
+            if ($questao->dificuldade == 2){
+                if($numeroQuestoesM > 0){
+                    $avaliacao->adicionaQuestao($questao);
+                    array_push($questoesUsadas, $questao);
+                    $tempo -= $questao->tempo;
+                    $numeroQuestoes++;
+                    $numeroQuestoesM--;  
+                }
+            }
+            if ($questao->dificuldade == 3){
+                if($numeroQuestoesD > 0){
+                    $avaliacao->adicionaQuestao($questao);
+                    array_push($questoesUsadas, $questao);
+                    $tempo -= $questao->tempo; 
+                    $numeroQuestoes++;  
+                    $numeroQuestoesD--;
+                }
+            }
+        }
+    }
+    $pdf = \PDF::loadView('avaliacao.pdf',['questoes' => $questoesUsadas]);
+        return $pdf->stream('avaliacao.pdf');
+    }
+
+    //gerarAva tem certo tipo de controle sobre o tipo das avaliacoes, nao permitindo que todas
+    // as questoes tenham sido usadas em listas (no maximo metade)
+    public function gerarAva($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
+                                $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo){
+
+    }
+
+    //gerarExameEspecial tem controle sobre os tipos de avaliacoes, nao permitindo nenhuma questao
+    //de listas de exercicios
+    public function gerarExameEspecial($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
+                                        $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo){
         
+    }
+
+    public function gerarAvaliacao(Request $request){ 
         $tempo = $request->tempo; 
         $numeroQuestoesF = $request->numeroQuestoesF;
         $numeroQuestoesM = $request->numeroQuestoesM;
@@ -72,6 +128,7 @@ class QuestaoController extends Controller
         $assuntos = $request->assunto_id;
         $tipo = $request->tipo;
         $taxaAceitacao = 0.5;
+        $totalDeQuestoes = $numeroQuestoesD + $numeroQuestoesF + $numeroQuestoesM;
         $avaliacao = new Avaliacao; 
         $avaliacao->tipo = $tipo;
         $avaliacao->save();
@@ -81,76 +138,24 @@ class QuestaoController extends Controller
             $query->whereIn('id_assunto', $assuntos);
         })->orderBy('last_used', 'desc')->get();
         $questoesUsadas = array();
+
         //Caso um assunto não tenha questão
             if ($questoes->isEmpty()){
                 $avaliacao->delete();
                 return '<script type="text/javascript">alert("Nenhuma questão encontrada");
-                location.href = "/gerar"; </script>';
-                
+                location.href = "/gerar"; </script>';   
             }
 
-        $totalDeQuestoes = $numeroQuestoesD + $numeroQuestoesF + $numeroQuestoesM;
-        $numeroQuestoes = 0; 
-
-        //Inserir pelo menos uma questão de cada assunto
-            foreach ($questoes as $questao){ 
-                if (($tempo > 0 && $tempo > $questao->tempo) || ($numeroQuestoes != $totalDeQuestoes)){
-                    if ($questao->dificuldade == 1){
-                        if($numeroQuestoesF > 0){
-                            $avaliacao->adicionaQuestao($questao);
-                            array_push($questoesUsadas, $questao); 
-                            $tempo -= $questao->tempo;
-                            $numeroQuestoes++; 
-                            $numeroQuestoesF--;  
-                        }
-                        /* }else{ 
-                            $x = self::randomize();
-                            if ($x <= $taxaAceitacao){
-                                $avaliacao->adicionaQuestao($questao); 
-                                $tempo -= $questao->tempo;
-                                $numeroQuestoes++;
-                            }
-                        } */
-                    }
-                    if ($questao->dificuldade == 2){
-                        if($numeroQuestoesM > 0){
-                            $avaliacao->adicionaQuestao($questao);
-                            array_push($questoesUsadas, $questao);
-                            $tempo -= $questao->tempo;
-                            $numeroQuestoes++;
-                            $numeroQuestoesM--;  
-                        }
-                       /*  }else{ 
-                            $x = self::randomize();
-                            if ($x <= $taxaAceitacao){
-                                $avaliacao->adicionaQuestao($questao); 
-                                $tempo -= $questao->tempo;
-                                $numeroQuestoes++;
-                            }
-                        } */
-                    }
-                    if ($questao->dificuldade == 3){
-                        if($numeroQuestoesD > 0){
-                            $avaliacao->adicionaQuestao($questao);
-                            array_push($questoesUsadas, $questao);
-                            $tempo -= $questao->tempo; 
-                            $numeroQuestoes++;  
-                            $numeroQuestoesD--;
-                        }
-                       /*  }else{ 
-                            $x = self::randomize(); 
-                            if ($x <= $taxaAceitacao){
-                                $avaliacao->adicionaQuestao($questao); 
-                                $tempo -= $questao->tempo;
-                                $numeroQuestoes++;
-                            }
-                        } */
-                    }
-                }
-                
-        }
-        $pdf = \PDF::loadView('avaliacao.pdf',['questoes' => $questoesUsadas]);
-        return $pdf->stream('avaliacao.pdf');
+            if ($tipo == 1){
+                gerarLista($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
+                $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo); 
+            }else if ($tipo == 2){
+                gerarAva($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
+                $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo); 
+            }else if ($tipo == 3){
+                gerarExameEspecial($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
+                $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo); 
+            }
     }
 
     public function randomize(){

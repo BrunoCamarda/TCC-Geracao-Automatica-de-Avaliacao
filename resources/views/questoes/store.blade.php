@@ -279,18 +279,12 @@
             //update progress
               var step = $(e.target).data('step');
               var percent = (parseInt(step) / 5) * 100;
-
             $('.progress-bar').css({width: percent + '%'});
             $('.progress-bar').text("Passo " + step + " de 5");
-
             e.relatedTarget // previous tab
-
             });
-
             $('.first').click(function(){
-
             $('#myWizard a:first').tab('show')
-
             });
             $('input[type="radio"]').click(function(){
               var inputValue = $(this).attr("id");
