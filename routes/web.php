@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('cadastrar');
 });
 
 Auth::routes();
@@ -25,4 +25,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cadastrar', 'QuestaoController@cadastrarView' )->name('cadastrar');
 Route::get('/gerar', 'QuestaoController@gerar' )->name('gerar');
 Route::get('/gerarAva', 'QuestaoController@gerarAvaliacao')->name('gerarAva');
-Route::get('/view', 'AvaliacaoController@makePDF')->name('viewPDF');
+Route::post('/view', 'AvaliacaoController@makePDF')->name('viewPDF');

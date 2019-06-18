@@ -250,7 +250,7 @@
             
             <div class="tipo2 box" hidden>
                 <label for="alternativa">Alternativa Correta</label>
-                <select class="form-control" id="alternativa" name="alternativa" required>
+                <select class="form-control" id="alternativa" name="alternativa">
                     <option selected disabled value="">SELECIONE</option>
                     <option value="1">A</option>
                     <option value="2">B</option>

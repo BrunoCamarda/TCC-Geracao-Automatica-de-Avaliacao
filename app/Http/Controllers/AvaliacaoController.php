@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class AvaliacaoController extends Controller
 {
-    public static function makePDF($questoes){
-        return view('avaliacao.pdf')->with("questoes", $questoes);
+    public static function makePDF(Request $request){
+        $pdf = \PDF::loadView('avaliacao.pdfFinal',['questoes' => $request]);
+        return $pdf->stream('avaliacao.pdfFinal');
     }
 }

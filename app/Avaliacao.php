@@ -14,13 +14,14 @@ class Avaliacao extends Model{
         return $this->belongsToMany('Questao');
     } 
 
-    public function adicionaQuestao(Questao $questao){
+    public function adicionaQuestao(Questao $questao, $tipo){
         $idAvaliacao = $this->id; 
         $avaliacao = new AvaliacaoQuestao;
         $avaliacao->id_avaliacao = $idAvaliacao;
         $avaliacao->id_questao = $questao->id; 
         $avaliacao->save();  
         $questao->last_used = Carbon::now();
+        $questao->tipoAvaliacao = $tipo;
         $questao->save();
     }
 
