@@ -7,6 +7,11 @@
 @stop
 
 @section('content')  
+
+    <p> Sua avaliação foi gerada. Agora é só fazer alguns ajustes visuais e pronto. </p>
+
+    <p> Para imprimir, basta clicar no ícone da impressora, na barra de menus do editor. Ou seguir pelo menu <strong>Arquivo > Imprimir </strong> </p>
+    
     <script src="vendor/tinymce/js/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
         tinymce.init({
