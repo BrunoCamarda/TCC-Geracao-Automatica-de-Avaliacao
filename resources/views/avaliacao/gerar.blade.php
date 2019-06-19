@@ -72,7 +72,7 @@
         
 
         <br>
-        <input type="submit" class="btn btn-success" value="Cadastrar">
+        <input type="submit" class="btn btn-danger" value="Gerar">
         
 </form>
 @stop

@@ -113,16 +113,35 @@ return [
             'url'  => 'cadastrar', 
             'icon' => 'plus', 
         ],
+         /*
         [
             'text' => 'Visualizar Questões', 
             'url'  => 'visualizar', 
             'icon' => 'eye', 
         ],
+        */
         [
             'text' => 'Gerar Avaliação', 
             'url'  => 'gerar', 
             'icon' => 'gears', 
         ],
+        /*
+        [
+            'text' => 'Gerenciar Avaliações', 
+            'url'  => 'gerenciar', 
+            'icon' => 'folder-open', 
+        ], 
+        [
+            'text' => 'Cabeçalhos', 
+            'url'  => 'cabecalhos',
+            'icon' => 'pencil',
+        ],
+        [
+            'text' => 'Ajuda', 
+            'url' => 'ajuda', 
+            'icon' => 'question',
+        ],
+        */
     ],
 
     /*
