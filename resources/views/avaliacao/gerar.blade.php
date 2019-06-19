@@ -45,7 +45,7 @@
        
             <div class="col">
                     <label for="tempo">Tempo </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos!" data-placement="right"></span>
-                    <input type="number" class="form-control" id="tempo" name="tempo" required>
+                    <input type="number" placeholder="tempo em minutos" class="form-control" id="tempo" name="tempo" required>
             </div>
 
 
