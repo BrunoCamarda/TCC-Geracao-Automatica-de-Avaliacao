@@ -336,7 +336,7 @@ class QuestaoController extends Controller
     }
 
     public function cadastrarView(){
-    if (Auth::check){
+    if (Auth::check()){
         $user = auth()->user();
         $assuntos = Assunto::where('id_user', $user->id)->orderBy('nome', 'ASC')->get();
         return view('questoes.store')->with("assuntos", $assuntos);

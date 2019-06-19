@@ -9,7 +9,7 @@ use Auth;
 class AvaliacaoController extends Controller
 {
     public static function makePDF(Request $request){
-        if (Auth::check){
+        if (Auth::check()){
             $questoes = $request;
             $respostas = Resposta::whereIn('id_questao', $request->questoes)->get();
             $pdf = \PDF::loadView('avaliacao.gabarito', compact('respostas', 'questoes'));
