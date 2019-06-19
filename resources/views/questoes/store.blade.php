@@ -20,13 +20,13 @@
             <div class="navbar-inner">
                 <ul class="nav nav-pills nav-wizard">
                     <li class="active">
-                        <a class="hidden-xs" href="#step1" data-toggle="tab" data-step="1">1. Enunciado</a>
+                        <a class="hidden-xs" href="#step1" data-toggle="tab" data-step="1">1. Assunto</a>
                         <a class="visible-xs" href="#step1" data-toggle="tab" data-step="1">1.</a>
                         <div class="nav-arrow"></div>
                     </li>
                     <li class="disabled">
                         <div class="nav-wedge"></div>
-                        <a class="hidden-xs" href="#step2" data-toggle="tab" data-step="2">2. Assuntos</a>
+                        <a class="hidden-xs" href="#step2" data-toggle="tab" data-step="2">2. Enunciado</a>
                         <a class="visible-xs" href="#step2" data-toggle="tab" data-step="2">2.</a>
                         <div class="nav-arrow"></div>
                     </li>
@@ -52,7 +52,42 @@
         </div>
 
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="step1">
+        <div class="tab-pane fade in active" id="step1">
+            <div class="well">
+          <div class="col">
+            
+                <label for="assunto">Assuntos </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos!" data-placement="right"></span>
+                    <select class="js-example-basic-multiple js-states form-control" id="assunto_id[]" name="assunto_id[]" required multiple="multiple">
+                        @foreach($assuntos as $a)
+                                <option value={{$a->id}}> {{$a->nome}} </option>
+                        @endforeach
+                    </select>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+           
+        </div>
+        <div class="input-group-prepend">
+          <span class="input-group-btn">
+                  <button 
+                  class="btn btn-success btn-add" 
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#modalAdicionarAssunto">
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+          </span>
+        </div> 
+        <script type="text/javascript">
+        $('#modalAdicionarAssunto').on('hidden.bs.modal', function () {
+          location.reload();
+         })
+        </script>
+        <br>
+        <button class="btn btn-default btn-lg next" style="float: right;" href="#" >Continue&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button>
+        </div> 
+      </div>
+
+            <div class="tab-pane fade" id="step2">
                 <div class="well">
                 <script src="vendor/tinymce/js/tinymce/tinymce.min.js"></script>
                 <script type="text/javascript">
@@ -60,10 +95,10 @@
                     selector: '#enunciado',
                     language: 'pt_BR',
                     browser_spellcheck: true, 
-                    toolbar: 'undo redo | styleselect | bold italic  | fontselect fontsizeselect  | alignleft aligncenter alignright | bullist numlist outdent indent |  image | codesample',
+                    toolbar: 'undo redo | bold italic  | eqneditor fontselect fontsizeselect  | alignleft aligncenter alignright | bullist numlist outdent indent |  image | codesample',
                     menubar: true,
                     contextmenu: true,
-                    plugins: 'advlist toc insertdatetime tabfocus hr pagebreak nonbreaking image image imagetools print preview lists charmap autoresize searchreplace emoticons help paste table codesample', 
+                    plugins: 'eqneditor advlist toc insertdatetime tabfocus hr pagebreak nonbreaking image image imagetools print preview lists charmap autoresize searchreplace emoticons help paste table codesample', 
                     height: 150,
                     width: 800,
                     codesample_dialog_width: '400',
@@ -108,41 +143,6 @@
             <button class="btn btn-default btn-lg next" style="float: right;" href="#" >Continue&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button>
           </div>
             </div>
-
-          <div class="tab-pane fade" id="step2">
-              <div class="well">
-            <div class="col">
-              
-                  <label for="assunto">Assuntos </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos!" data-placement="right"></span>
-                      <select class="js-example-basic-multiple js-states form-control" id="assunto_id[]" name="assunto_id[]" required multiple="multiple">
-                          @foreach($assuntos as $a)
-                                  <option value={{$a->id}}> {{$a->nome}} </option>
-                          @endforeach
-                      </select>
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-             
-          </div>
-          <div class="input-group-prepend">
-            <span class="input-group-btn">
-                    <button 
-                    class="btn btn-success btn-add" 
-                    type="button"
-                    data-toggle="modal"
-                    data-target="#modalAdicionarAssunto">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-            </span>
-          </div> 
-          <script type="text/javascript">
-          $('#modalAdicionarAssunto').on('hidden.bs.modal', function () {
-            location.reload();
-           })
-          </script>
-          <br>
-          <button class="btn btn-default btn-lg next" style="float: right;" href="#" >Continue&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button>
-          </div> 
-        </div>
 
           <div class="tab-pane fade" id="step3">
             <div class="well">

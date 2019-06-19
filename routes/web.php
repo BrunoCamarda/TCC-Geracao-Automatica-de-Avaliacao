@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('cadastrar');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -20,9 +20,9 @@ Auth::routes();
 Route::resource('/questoes', 'QuestaoController');
 Route::resource('/assuntos', 'AssuntoController');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'QuestaoController@cadastrarView')->name('home');
 
 Route::get('/cadastrar', 'QuestaoController@cadastrarView' )->name('cadastrar');
 Route::get('/gerar', 'QuestaoController@gerar' )->name('gerar');
 Route::get('/gerarAva', 'QuestaoController@gerarAvaliacao')->name('gerarAva');
-Route::post('/view', 'AvaliacaoController@makePDF')->name('viewPDF');
+Route::post('/view', 'AvaliacaoController@makePDF')->name('viewGabarito');

@@ -10,7 +10,7 @@ class Questao extends Model
 {
     protected $table = 'questao';
     protected $fillable = [
-        'id', 'tipo', 'dificuldade','tempo', 'enunciado'];
+        'id', 'tipo', 'dificuldade','tempo', 'enunciado', 'id_user'];
 
     public function assuntos(){
         return $this->belongsToMany('App\Assunto', 'questao_assunto', 'id_questao', 'id_assunto');

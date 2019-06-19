@@ -40,6 +40,8 @@ class QuestaoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){ 
+      $user = auth()->user();
+      $request->request->add(['id_user' => $user->id]);
       $id = Questao::create($request->all())->id;
       $r = new Resposta();
       $r->id_questao = $id; 
@@ -59,7 +61,8 @@ class QuestaoController extends Controller
     }
 
     public function gerar(){
-        $assuntos = Assunto::orderBy('nome', 'ASC')->get();
+        $user = auth()->user();
+        $assuntos = Assunto::where('id_user', $user->id)->orderBy('nome', 'ASC')->get();
         return view('avaliacao.gerar')->with("assuntos", $assuntos);
     }
 
@@ -178,8 +181,7 @@ class QuestaoController extends Controller
                 }
             }
         }
-        $pdf = \PDF::loadView('avaliacao.pdf',['questoes' => $questoesUsadas]);
-            return $pdf->stream('avaliacao.pdf');                                
+        return view('avaliacao.pdf')->with('questoes', $questoesUsadas);                            
     }
 
     //gerarExameEspecial tem controle sobre os tipos de avaliacoes, nao permitindo nenhuma questao
@@ -222,8 +224,7 @@ class QuestaoController extends Controller
             }
             }
         }
-        $pdf = \PDF::loadView('avaliacao.pdf',['questoes' => $questoesUsadas]);
-            return $pdf->stream('avaliacao.pdf');    
+        return view('avaliacao.pdf')->with('questoes', $questoesUsadas); 
     }
 
     public function gerarAvaliacao(Request $request){ 
@@ -237,6 +238,8 @@ class QuestaoController extends Controller
         $totalDeQuestoes = $numeroQuestoesD + $numeroQuestoesF + $numeroQuestoesM;
         $avaliacao = new Avaliacao; 
         $avaliacao->tipo = $tipo;
+        $user = auth()->user();
+        $avaliacao->id_user = $user->id;
         $avaliacao->save();
 
         //Ordenar as questões por uso do último uso(da mais antiga pra mais recente)
@@ -314,7 +317,8 @@ class QuestaoController extends Controller
     }
 
     public function cadastrarView(){
-        $assuntos = Assunto::orderBy('nome', 'ASC')->get();
+        $user = auth()->user();
+        $assuntos = Assunto::where('id_user', $user->id)->orderBy('nome', 'ASC')->get();
         return view('questoes.store')->with("assuntos", $assuntos);
     }
 }

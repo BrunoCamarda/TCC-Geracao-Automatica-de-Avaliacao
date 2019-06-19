@@ -34,7 +34,11 @@ class AssuntoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        Assunto::create($request->all()); 
+        $assunto = new Assunto;
+        $user = auth()->user();
+        $assunto->id_user =  $user->id; 
+        $assunto->nome = $request->nome;
+        $assunto->save();
         return redirect ('/cadastrar');
     }
 
