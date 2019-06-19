@@ -8,6 +8,12 @@
 @stop
 
 @section('content') 
+
+<p> Gere sua avaliação conforme suas configurações.</p>
+
+<p> Selecione um ou mais assuntos, defina o tempo e o número de questões </p>
+
+<p><strong>Nota:</strong> Leve em consideração o tipo de avaliação que deseja gerar e suas limitações. Em alguns casos, o número de questões pode ser menor do que o definido </p>
    <form method="get" action="{{route('gerarAva')}}">
         @csrf
        
@@ -44,23 +50,23 @@
 
        
             <div class="col">
-                    <label for="tempo">Tempo </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos!" data-placement="right"></span>
+                    <label for="tempo">Tempo </label>
                     <input type="number" placeholder="tempo em minutos" class="form-control" id="tempo" name="tempo" required>
             </div>
 
 
             <div class="col">
-                <label for="numeroQuestoesF">Quantidade de Questões Fáceis </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos!" data-placement="right"></span>
+                <label for="numeroQuestoesF">Quantidade de Questões Fáceis </label> 
                 <input type="number" class="form-control" id="numeroQuestoesF" name="numeroQuestoesF" required>
             </div>
 
             <div class="col">
-                <label for="numeroQuestoesM">Quantidade de Questões Médias </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos!" data-placement="right"></span>
+                <label for="numeroQuestoesM">Quantidade de Questões Médias </label> 
                 <input type="number" class="form-control" id="numeroQuestoesM" name="numeroQuestoesM" required>
             </div>
 
             <div class="col">
-                <label for="numeroQuestoesD">Quantidade de Questões Dificeis </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos!" data-placement="right"></span>
+                <label for="numeroQuestoesD">Quantidade de Questões Dificeis </label>
                 <input type="number" class="form-control" id="numeroQuestoesD" name="numeroQuestoesD" required>
             </div>
         
