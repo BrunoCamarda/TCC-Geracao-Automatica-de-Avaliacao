@@ -56,7 +56,7 @@
             <div class="well">
           <div class="col">
             
-                <label for="assunto">Assuntos </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos! Use o botão abaixo para inserir um novo assunto" data-placement="right"></span>
+                <label for="assunto">Assuntos </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos! Use o botão abaixo para cadastrar um novo assunto" data-placement="right"></span>
                     <select class="js-example-basic-multiple js-states form-control" id="assunto_id[]" name="assunto_id[]" required multiple="multiple">
                         @foreach($assuntos as $a)
                                 <option value={{$a->id}}> {{$a->nome}} </option>

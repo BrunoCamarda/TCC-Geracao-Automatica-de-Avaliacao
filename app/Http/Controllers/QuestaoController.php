@@ -10,6 +10,7 @@ use App\QuestaoAssunto;
 use App\Avaliacao; 
 use App\Resposta; 
 use Illuminate\Http\Request;
+use Auth;
 
 class QuestaoController extends Controller
 {
@@ -40,6 +41,7 @@ class QuestaoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){ 
+      if (Auth::check()){
       $user = auth()->user();
       $request->request->add(['id_user' => $user->id]);
       $id = Questao::create($request->all())->id;
@@ -58,12 +60,23 @@ class QuestaoController extends Controller
         $q->save();
       }
       return redirect ('/cadastrar');
+    }else{
+        echo"<script type='text/javascript'>alert('Você não tem permissão para acessar essa página!');
+				location.href ='/';
+			</script>";
+    }
     }
 
     public function gerar(){
-        $user = auth()->user();
-        $assuntos = Assunto::where('id_user', $user->id)->orderBy('nome', 'ASC')->get();
-        return view('avaliacao.gerar')->with("assuntos", $assuntos);
+        if (Auth::check()){
+            $user = auth()->user();
+            $assuntos = Assunto::where('id_user', $user->id)->orderBy('nome', 'ASC')->get();
+            return view('avaliacao.gerar')->with("assuntos", $assuntos);
+        }else{
+            echo"<script type='text/javascript'>alert('Você não tem permissão para acessar essa página!');
+				location.href ='/';
+			</script>";
+        }
     }
 
     //gerarLista não conta com nenhum tipo de controle sobre o tipo das avaliacoes, apenas insere
@@ -228,42 +241,48 @@ class QuestaoController extends Controller
     }
 
     public function gerarAvaliacao(Request $request){ 
-        $tempo = $request->tempo; 
-        $numeroQuestoesF = $request->numeroQuestoesF;
-        $numeroQuestoesM = $request->numeroQuestoesM;
-        $numeroQuestoesD = $request->numeroQuestoesD;
-        $assuntos = $request->assunto_id;
-        $tipo = $request->tipo;
-        $taxaAceitacao = 0.5;
-        $totalDeQuestoes = $numeroQuestoesD + $numeroQuestoesF + $numeroQuestoesM;
-        $avaliacao = new Avaliacao; 
-        $avaliacao->tipo = $tipo;
-        $user = auth()->user();
-        $avaliacao->id_user = $user->id;
-        $avaliacao->save();
+        if (Auth::check()){
+            $tempo = $request->tempo; 
+            $numeroQuestoesF = $request->numeroQuestoesF;
+            $numeroQuestoesM = $request->numeroQuestoesM;
+            $numeroQuestoesD = $request->numeroQuestoesD;
+            $assuntos = $request->assunto_id;
+            $tipo = $request->tipo;
+            $taxaAceitacao = 0.5;
+            $totalDeQuestoes = $numeroQuestoesD + $numeroQuestoesF + $numeroQuestoesM;
+            $avaliacao = new Avaliacao; 
+            $avaliacao->tipo = $tipo;
+            $user = auth()->user();
+            $avaliacao->id_user = $user->id;
+            $avaliacao->save();
 
-        //Ordenar as questões por uso do último uso(da mais antiga pra mais recente)
-        $questoes = Questao::whereHas('assuntos', function ($query) use ($assuntos) {
-            $query->whereIn('id_assunto', $assuntos);
-        })->orderBy('last_used', 'asc')->get();
-        $questoesUsadas = array();
+            //Ordenar as questões por uso do último uso(da mais antiga pra mais recente)
+            $questoes = Questao::whereHas('assuntos', function ($query) use ($assuntos) {
+                $query->whereIn('id_assunto', $assuntos);
+            })->orderBy('last_used', 'asc')->get();
+            $questoesUsadas = array();
 
-        //Caso um assunto não tenha questão
-            if ($questoes->isEmpty()){
-                $avaliacao->delete();
-                return '<script type="text/javascript">alert("Nenhuma questão encontrada");
-                location.href = "/gerar"; </script>';   
-            }
+            //Caso um assunto não tenha questão
+                if ($questoes->isEmpty()){
+                    $avaliacao->delete();
+                    return '<script type="text/javascript">alert("Nenhuma questão encontrada");
+                    location.href = "/gerar"; </script>';   
+                }
 
-            if ($tipo == 1){
-               return $this->gerarLista($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
-                    $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo, $tipo);
-            }else if ($tipo == 2){
-               return $this->gerarAva($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
-                $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo, $tipo); 
-            }else if ($tipo == 3){
-               return $this->gerarExameEspecial($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
-                $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo, $tipo); 
+                if ($tipo == 1){
+                return $this->gerarLista($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
+                        $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo, $tipo);
+                }else if ($tipo == 2){
+                return $this->gerarAva($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
+                    $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo, $tipo); 
+                }else if ($tipo == 3){
+                return $this->gerarExameEspecial($questoes, $questoesUsadas, $avaliacao, $numeroQuestoesF,
+                    $numeroQuestoesM, $numeroQuestoesD, $totalDeQuestoes, $tempo, $tipo); 
+                }
+            }else{
+                echo"<script type='text/javascript'>alert('Você não tem permissão para acessar essa página!');
+				location.href ='/';
+			</script>";  
             }
     }
 
@@ -317,8 +336,14 @@ class QuestaoController extends Controller
     }
 
     public function cadastrarView(){
+    if (Auth::check){
         $user = auth()->user();
         $assuntos = Assunto::where('id_user', $user->id)->orderBy('nome', 'ASC')->get();
         return view('questoes.store')->with("assuntos", $assuntos);
+    }else{
+        echo"<script type='text/javascript'>alert('Você não tem permissão para acessar essa página!');
+        location.href ='/';
+    </script>";  
+    }
     }
 }
