@@ -33,7 +33,7 @@
         </div>
 
             <div class="col">
-                <label for="dificuldade">Tipo </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos!" data-placement="right"></span>
+                <label for="dificuldade">Tipo </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Lista de Exercícios: Aceita qualquer questão \n Avaliacao: apenas metade das questões pode ter sido usada em listas pela última vez \n Exame Especial: Nenhuma questão poderá ter sido usada por último em uma lista de exercícios" data-placement="right"></span>
                 <select class="form-control" id="tipo" name="tipo" required>
                     <option selected disabled value="">SELECIONE</option>
                     <option value="1">Lista de Exercícios</option>
