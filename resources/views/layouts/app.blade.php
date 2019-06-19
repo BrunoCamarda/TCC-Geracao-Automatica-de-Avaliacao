@@ -23,6 +23,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ secure_asset('css/AdminLTE.min.css') }}">
+
     <!-- Select2 --> 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
 
