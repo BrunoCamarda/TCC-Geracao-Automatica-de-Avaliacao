@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Resposta; 
 use App\AvaliacaoQuestao;
 use App\Avaliacao;
+use App\Questao;
 use Auth;
 
 class AvaliacaoController extends Controller
