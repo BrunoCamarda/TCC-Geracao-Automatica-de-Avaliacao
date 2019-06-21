@@ -26,7 +26,6 @@ class AvaliacaoController extends Controller
 
     public function show ($id){
         $avaliacao = Avaliacao::where('id', $id)->get();
-        return $avaliacao;
         $user = auth()->user();
         if ($user->id == $avaliacao->id_user){
             $questoes = AvaliacaoQuestao::where('id_avaliacao', $id)->get();
