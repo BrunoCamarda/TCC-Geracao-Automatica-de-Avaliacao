@@ -19,19 +19,21 @@
     .tg .tg-s268{text-align:left}
     .tg .tg-0lax{text-align:left;vertical-align:top}
     </style>
+    <center>
     <table class="tg">
       <tr>
-        <th class="tg-qtf5">Nome</th>
-        <th class="tg-s268">Data</th>
-        <th class="tg-s268">Ações</th>
+        <th class="tg-qtf5"><strong>Nome</strong></th>
+        <th class="tg-s268"><strong>Data</strong></th>
+        <th class="tg-s268"><strong>Ações</strong></th>
       </tr>
       @foreach ($avaliacoes as $a)
       <tr>
         <td class="tg-0lax">{{$a->nome}}</td>
-        <td class="tg-0lax">{{$a->created_at}}</td>
-        <td class="tg-0lax"></td>
+        <td class="tg-0lax">{{date('F j, Y', strtotime($a->created_at))}}</td>
+        <td class="tg-0lax"><a href="/avaliacao/{{$a->id}}"><input type="button" class="btn btn-info" value="Ver"></a></td>
       </tr>
       @endforeach
     </table>
+</center>
 
 @stop 
