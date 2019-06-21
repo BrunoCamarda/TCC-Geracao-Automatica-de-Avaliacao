@@ -3,7 +3,7 @@
 @section('title', '')
 
 @section('content_header')
-    
+    <h1>Avaliação Gerada - Hora de editar!</h1>
 @stop
 
 @section('content')  
@@ -101,8 +101,8 @@
                 </tbody>
                 </table>
                 <p><strong>O entendimento da prova &eacute; parte da avalia&ccedil;&atilde;o. N&atilde;o&nbsp;ser&aacute; objeto de&nbsp;revis&atilde;o&nbsp;a&nbsp;prova&nbsp;feita a&nbsp;l&aacute;pis.</strong></p>
-            @foreach($questao as $key=>$q)
-            {{ $key+1 }}{!!$q->enunciado!!} 
+            @foreach($questoes as $key=>$questao)
+            {{ $key+1 }}{!!$questao->enunciado!!} 
             <br><br><br>
             @endforeach
             </div>
@@ -111,8 +111,8 @@
 </textarea>
 <form method="post" target="_blank" id=questoes action="{{route('viewGabarito')}}">
 @csrf
-@foreach($questao as $q)
-<input type="hidden" value="{{$q->id}}" name="questoes[]">
+@foreach($questoes as $questao)
+<input type="hidden" value="{{$questao->id}}" name="questoes[]">
 @endforeach
 <br>
 <input type="submit" class="btn btn-warning" value="Gerar Gabarito">
