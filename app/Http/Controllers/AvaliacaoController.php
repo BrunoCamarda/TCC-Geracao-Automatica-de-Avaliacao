@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Resposta; 
 use App\AvaliacaoQuestao;
+use App\Avaliacao;
 use Auth;
 
 class AvaliacaoController extends Controller
@@ -28,5 +29,10 @@ class AvaliacaoController extends Controller
             $questao[] = Questao::where('id', $q->id_questao);
         }
         return $questao;
+    }
+    
+    public function all(){
+        $avaliacoes = Avaliacao::all();
+        return view('avaliacao.gerenciar')->with('avaliacoes', $avaliacoes);
     }
 }
