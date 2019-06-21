@@ -23,8 +23,8 @@ class AvaliacaoController extends Controller
         }
     }
 
-    public function show (Avaliacao $avaliacao){
-        $questoes = AvaliacaoQuestao::where('id_avaliacao', $avalicao->id);
+    public function show ($id){
+        $questoes = AvaliacaoQuestao::where('id_avaliacao', $id);
         foreach($questoes as $q){
             $questao[] = Questao::where('id', $q->id_questao);
         }
