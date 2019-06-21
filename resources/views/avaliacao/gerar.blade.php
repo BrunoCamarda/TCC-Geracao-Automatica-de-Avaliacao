@@ -20,7 +20,7 @@
         <div class="form-row">
             <div class="col">
                 <label for="nome"> Nome </label>
-                <input type="text" class="form-controll" id="nome" name="nome" required>
+                <input type="text" class="form-control" id="nome" name="nome" required>
             </div> 
 
             <div class="col-7">
