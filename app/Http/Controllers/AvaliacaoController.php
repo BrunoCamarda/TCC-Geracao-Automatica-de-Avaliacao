@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Resposta; 
+use App\AvaliacaoQuestao;
 use Auth;
 
 class AvaliacaoController extends Controller
@@ -19,5 +20,13 @@ class AvaliacaoController extends Controller
             location.href ='/';
         </script>";  
         }
+    }
+
+    public function show (Avaliacao $avaliacao){
+        $questoes = AvaliacaoQuestao::where('id_avaliacao', $avalicao->id);
+        foreach($questoes as $q){
+            $questao[] = Questao::where('id', $q->id_questao);
+        }
+        return $questao;
     }
 }

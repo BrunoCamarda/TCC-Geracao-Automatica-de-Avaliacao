@@ -254,6 +254,7 @@ class QuestaoController extends Controller
             $avaliacao->tipo = $tipo;
             $user = auth()->user();
             $avaliacao->id_user = $user->id;
+            $avaliacao->nome = $request->nome;
             $avaliacao->save();
 
             //Ordenar as questões por uso do último uso(da mais antiga pra mais recente)

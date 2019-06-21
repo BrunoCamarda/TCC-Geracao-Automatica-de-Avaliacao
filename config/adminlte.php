@@ -125,12 +125,13 @@ return [
             'url'  => 'gerar', 
             'icon' => 'gears', 
         ],
-        /*
+        
         [
             'text' => 'Gerenciar Avaliações', 
             'url'  => 'gerenciar', 
             'icon' => 'folder-open', 
         ], 
+        /*
         [
             'text' => 'Cabeçalhos', 
             'url'  => 'cabecalhos',

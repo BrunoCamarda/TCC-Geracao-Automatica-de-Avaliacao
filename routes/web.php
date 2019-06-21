@@ -21,7 +21,7 @@ Route::resource('/questoes', 'QuestaoController');
 Route::resource('/assuntos', 'AssuntoController');
 
 Route::get('/home', 'QuestaoController@cadastrarView')->name('home');
-
+Route::get('/gerenciar', 'AvaliacaoController@show')->name('gerenciar');
 Route::get('/cadastrar', 'QuestaoController@cadastrarView' )->name('cadastrar');
 Route::get('/gerar', 'QuestaoController@gerar' )->name('gerar');
 Route::get('/gerarAva', 'QuestaoController@gerarAvaliacao')->name('gerarAva');

@@ -19,6 +19,9 @@
        
         <div class="form-row">
             <div class="col-7">
+                <label for="nome"> Nome </label>
+                <input type="text" class="form-controll" id="nome" required> 
+
                 <label for="assunto">Assuntos </label> <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Insira um ou mais assuntos!" data-placement="right"></span>
                     <select class="js-example-basic-multiple js-states form-control" id="assunto_id[]" name="assunto_id[]" required multiple="multiple">
                         @foreach($assuntos as $a)
