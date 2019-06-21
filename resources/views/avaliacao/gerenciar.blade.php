@@ -9,9 +9,7 @@
 
 @section('content') 
 
-<p> Gere sua avaliação conforme suas configurações.</p>
-
-<p> Selecione um ou mais assuntos, defina o tempo e o número de questões </p>
+<p> Selecione <strong>ver</strong> para visualizar e imprimir sua avaliação</p>
 
 <style type="text/css">
     .tg  {border-collapse:collapse;border-spacing:0;border:none;border-color:#ccc;}
@@ -35,3 +33,5 @@
       </tr>
       @endforeach
     </table>
+
+@stop 
