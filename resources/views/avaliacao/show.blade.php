@@ -14,6 +14,7 @@
     
     @foreach($questoes as $q)
         {{$q}}
+        <br><br>
     @endforeach
 
     {{-- <script src="vendor/tinymce/js/tinymce/tinymce.min.js"></script>
