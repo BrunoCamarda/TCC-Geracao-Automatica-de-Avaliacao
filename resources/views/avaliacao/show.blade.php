@@ -13,7 +13,9 @@
     <p> Para imprimir, basta clicar no ícone da impressora, na barra de menus do editor. Ou seguir pelo menu <strong>Arquivo > Imprimir </strong> </p>
     
     @foreach($questoes as $q)
-        {{$q->id}}
+        <?php
+        dd($q);
+        ?>
         <br><br>
     @endforeach
 

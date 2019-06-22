@@ -34,9 +34,7 @@ class AvaliacaoController extends Controller
                 $questao[] = $q->id_questao;
             }
             $questoes = Questao::whereIn('id', $questao)->get();
-            dd($questoes);
-            return $questoes;
-           // return view('avaliacao.show')->with('questoes', $questao);
+            return view('avaliacao.show')->with('questoes', $questao);
     //    }else{ 
     //        echo"<script type='text/javascript'>alert('Você não tem permissão para acessar essa página!');
     //        location.href ='/';
