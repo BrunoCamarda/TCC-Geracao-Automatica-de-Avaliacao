@@ -12,14 +12,7 @@
 
     <p> Para imprimir, basta clicar no ícone da impressora, na barra de menus do editor. Ou seguir pelo menu <strong>Arquivo > Imprimir </strong> </p>
     
-    @foreach($questoes as $q)
-        <?php
-        dd($q);
-        ?>
-        <br><br>
-    @endforeach
-
-    {{-- <script src="vendor/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="vendor/tinymce/js/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
         tinymce.init({
         selector: '#avaliacao',
@@ -123,7 +116,7 @@
 @endforeach
 <br>
 <input type="submit" class="btn btn-warning" value="Gerar Gabarito">
-</form> --}}
+</form>
 </center>
 
 
