@@ -28,12 +28,14 @@ class AvaliacaoController extends Controller
         $avaliacao = Avaliacao::where('id', $id)->get();
         $user = auth()->user();
         //if ($user->id == $avaliacao['id_user']){
-            $questoes = AvaliacaoQuestao::where('id_avaliacao', $id)->get();
+            $avaQuestoes = AvaliacaoQuestao::where('id_avaliacao', $id)->get();
             $questao = array();
-            foreach($questoes as $q){
-                $questao[] = Questao::where('id', $q->id_questao)->get();
+            foreach($avaQuestoes as $q){
+                $questao[] = $q->id_questao;
             }
-            return view('avaliacao.show')->with('questoes', $questao);
+            $questoes = Questoes::whereIn('id', $questao);
+            return $questoes; 
+            //return view('avaliacao.show')->with('questoes', $questao);
     //    }else{ 
     //        echo"<script type='text/javascript'>alert('Você não tem permissão para acessar essa página!');
     //        location.href ='/';
