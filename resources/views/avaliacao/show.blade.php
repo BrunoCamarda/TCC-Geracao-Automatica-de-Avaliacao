@@ -102,7 +102,7 @@
                 </table>
                 <p><strong>O entendimento da prova &eacute; parte da avalia&ccedil;&atilde;o. N&atilde;o&nbsp;ser&aacute; objeto de&nbsp;revis&atilde;o&nbsp;a&nbsp;prova&nbsp;feita a&nbsp;l&aacute;pis.</strong></p>
             @foreach($questoes as $key=>$questao)
-            {{ $key+1 }}{!!$questao->enunciado!!} 
+            {{ $key+1 }}{!!$questao['enunciado']!!} 
             <br><br><br>
             @endforeach
             </div>
@@ -112,7 +112,7 @@
 <form method="post" target="_blank" id=questoes action="{{route('viewGabarito')}}">
 @csrf
 @foreach($questoes as $questao)
-<input type="hidden" value="{{$questao->id}}" name="questoes[]">
+<input type="hidden" value="{{$questao['id']}}" name="questoes[]">
 @endforeach
 <br>
 <input type="submit" class="btn btn-warning" value="Gerar Gabarito">
