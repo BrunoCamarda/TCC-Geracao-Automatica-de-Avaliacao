@@ -3,12 +3,10 @@
 @section('title', '')
 
 @section('content_header')
-    <h1>Avaliação Gerada - Hora de editar!</h1>
+    <h1>Avaliação</h1>
 @stop
 
 @section('content')  
-
-    <p> Sua avaliação foi gerada. Agora é só fazer alguns ajustes visuais e pronto. </p>
 
     <p> Para imprimir, basta clicar no ícone da impressora, na barra de menus do editor. Ou seguir pelo menu <strong>Arquivo > Imprimir </strong> </p>
     
@@ -112,7 +110,7 @@
 <form method="post" target="_blank" id=questoes action="{{route('viewGabarito')}}">
 @csrf
 @foreach($questoes as $questao)
-<input type="hidden" value="{{$questao['id']}}" name="questoes[]">
+<input type="hidden" value="{{$questao->id}}" name="questoes[]">
 @endforeach
 <br>
 <input type="submit" class="btn btn-warning" value="Gerar Gabarito">
@@ -121,3 +119,4 @@
 
 
 @stop
+
