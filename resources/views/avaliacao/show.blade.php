@@ -14,7 +14,7 @@
     <script src="vendor/tinymce/js/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
         tinymce.init({
-        selector: '#avaliacao2',
+        selector: '#geraAva',
         language: 'pt_BR',
         browser_spellcheck: true, 
         toolbar: 'undo redo eqneditor| print | bold italic  | fontselect fontsizeselect  | alignleft aligncenter alignright | bullist numlist outdent indent |  image | codesample',
@@ -57,7 +57,7 @@
     </script>
 <center>
 <h1></h1>
-<textarea id="avaliacao2" name="avaliacao2"><div class="panel-body">
+<textarea id="geraAva" name="geraAva"><div class="panel-body">
                 <p style="text-align: center;"><span style="font-weight: 400;"><img src="http://cebas.mec.gov.br/images/jpg/brasao_oficial.png" width="66" height="68" /></span></p>
                 <p style="text-align: center;"><span style="font-weight: 400;">Minist&eacute;rio da Educa&ccedil;&atilde;o</span></p>
                 <p style="text-align: center;"><span style="font-weight: 400;">Universidade Federal de Ouro Preto</span></p>
