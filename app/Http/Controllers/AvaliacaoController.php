@@ -33,7 +33,7 @@ class AvaliacaoController extends Controller
             foreach($questoes as $q){
                 $questao[] = Questao::where('id', $q->id_questao)->get();
             }
-            return view('avaliacao.show')->with('questoes', $questao[]);
+            return view('avaliacao.show')->with('questoes', $questao);
     //    }else{ 
     //        echo"<script type='text/javascript'>alert('Você não tem permissão para acessar essa página!');
     //        location.href ='/';
