@@ -1,12 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', '')
+@section('title', 'Gerenciar Avaliação')
 
 @section('content_header')
     <h1>Avaliação</h1>
 @stop
 
 @section('content')  
+
 
     <p> Para imprimir, basta clicar no ícone da impressora, na barra de menus do editor. Ou seguir pelo menu <strong>Arquivo > Imprimir </strong> </p>
     
@@ -119,4 +120,3 @@
 
 
 @stop
-
