@@ -44,7 +44,8 @@ class AvaliacaoController extends Controller
     
     public function all(){
         $user = auth()->user();
-        $avaliacoes = Avaliacao::where('id_user', $user->id)->get();
-        return view('avaliacao.gerenciar')->with('avaliacoes', $avaliacoes);
+        dd($user);
+        //$avaliacoes = Avaliacao::where('id_user', $user->id)->get();
+        //return view('avaliacao.gerenciar')->with('avaliacoes', $avaliacoes);
     }
 }
