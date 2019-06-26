@@ -37,7 +37,7 @@ class AvaliacaoController extends Controller
             return view('avaliacao.show')->with('questoes', $questoes);
         }else{ 
             echo"<script type='text/javascript'>alert('Você não tem permissão para acessar essa página!');
-            location.href ='/cadastrar';
+            location.href ='/gerenciar';
         </script>"; 
         }
     }

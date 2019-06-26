@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::resource('/questoes', 'QuestaoController');
 Route::resource('/assuntos', 'AssuntoController');
+Route::resource('avaliacoes', 'AvaliacaoController');
 
 Route::get('/home', 'QuestaoController@cadastrarView')->name('home');
 Route::get('/gerenciar', 'AvaliacaoController@all')->name('gerenciar');
