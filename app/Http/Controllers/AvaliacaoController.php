@@ -37,13 +37,14 @@ class AvaliacaoController extends Controller
             return view('avaliacao.show')->with('questoes', $questoes);
         }else{ 
             echo"<script type='text/javascript'>alert('Você não tem permissão para acessar essa página!');
-            location.href ='/';
+            location.href ='/cadastrar';
         </script>"; 
         }
     }
     
     public function all(){
-        $avaliacoes = Avaliacao::all();
+        $user = auth()->user();
+        $avaliacoes = Avaliacao::where('id_user', $user->id)->get();
         return view('avaliacao.gerenciar')->with('avaliacoes', $avaliacoes);
     }
 }
