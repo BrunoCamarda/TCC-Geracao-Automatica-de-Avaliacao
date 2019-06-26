@@ -23,12 +23,29 @@
     <table class="tg">
       <tr>
         <th class="tg-qtf5"><strong>Nome</strong></th>
+        <th class="tg-s268"><strong>Tipo</strong></th>
         <th class="tg-s268"><strong>Data</strong></th>
         <th class="tg-s268"><strong>Ações</strong></th>
       </tr>
       @foreach ($avaliacoes as $a)
       <tr>
         <td class="tg-0lax">{{$a->nome}}</td>
+        <?php 
+          if ($a->tipo == 1){ 
+            ?>
+            <td class="tg-01ax">Lista de Exercício</td>
+            <?php
+          }else if($a->tipo == 2){
+            ?>
+            <td class="tg-01ax">Avaliação</td>
+            <?php
+          }else{
+            ?> 
+             <td class="tg-01ax">Exame Especial</td>
+             <?php
+          }
+          ?>
+        <td class="tg-01ax">{{$a->tipo}}</td>
         <td class="tg-0lax">{{date('F j, Y', strtotime($a->created_at))}}</td>
         <td class="tg-0lax"><a href="/avaliacao/{{$a->id}}"><input type="button" class="btn btn-info" value="Ver"></a></td>
       </tr>
