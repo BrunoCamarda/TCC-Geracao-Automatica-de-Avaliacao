@@ -45,7 +45,6 @@
              <?php
           }
           ?>
-        <td class="tg-01ax">{{$a->tipo}}</td>
         <td class="tg-0lax">{{date('F j, Y', strtotime($a->created_at))}}</td>
         <td class="tg-0lax"><a href="/avaliacao/{{$a->id}}"><input type="button" class="btn btn-info" value="Ver"></a></td>
       </tr>
