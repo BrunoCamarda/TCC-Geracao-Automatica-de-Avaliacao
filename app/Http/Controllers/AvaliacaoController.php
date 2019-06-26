@@ -27,7 +27,7 @@ class AvaliacaoController extends Controller
     public function show ($id){
         $avaliacao = Avaliacao::where('id', $id)->get();
         $user = auth()->user()->id;
-        if ($user == $id){
+        if ($user == $avaliacao->user_id){
             $avaQuestoes = AvaliacaoQuestao::where('id_avaliacao', $id)->get();
             $questao = array();
             foreach($avaQuestoes as $q){
@@ -45,9 +45,8 @@ class AvaliacaoController extends Controller
     public function all(){
         if (Auth::check()){
             $user = auth()->user();
-            dd($user);
-            //$avaliacoes = Avaliacao::where('id_user', $user->id)->get();
-            //return view('avaliacao.gerenciar')->with('avaliacoes', $avaliacoes);
+            $avaliacoes = Avaliacao::where('id_user', $user->id)->get();
+            return view('avaliacao.gerenciar')->with('avaliacoes', $avaliacoes);
         }
     }
 }
