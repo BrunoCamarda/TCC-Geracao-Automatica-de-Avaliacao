@@ -57,7 +57,7 @@
     </script>
 <center>
 <h1></h1>
-<textarea id="avaTal" name="avaTal"><div class="panel-body">
+<textarea id="avaTal" name="avaTal">
                 <p style="text-align: center;"><span style="font-weight: 400;"><img src="http://cebas.mec.gov.br/images/jpg/brasao_oficial.png" width="66" height="68" /></span></p>
                 <p style="text-align: center;"><span style="font-weight: 400;">Minist&eacute;rio da Educa&ccedil;&atilde;o</span></p>
                 <p style="text-align: center;"><span style="font-weight: 400;">Universidade Federal de Ouro Preto</span></p>
